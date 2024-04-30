@@ -1,51 +1,108 @@
 #include "so_long.h"
 
-void	extension_check(char **s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	i--;
-	if (s[i] != 'r' || s[i - 1] != 'e' || s[i - 2] != 'b' || s[i - 3] != '.')
-		perror_and_exit("Error\n map should be a .ber file");
-	return ;
-}
-
-void init_map(char **map, t_game *ptr_game)
-{
-	int		map_fd;
-	char	*newline;
-	char	*map;
-
-	extension_check(map[1]);
-}
-
-void init_struct(t_game *ptr_game)
+void init_struct(t_game *game)
 {
 	game->wall = NULL;
-	game->coin = NULL;
+	game->box = NULL;
 	game->floor = NULL;
 	game->hero = NULL;
-	game->exit = NULL;
+	game->door = NULL;
 	game->map = NULL;
-	game->img_height = NULL;
-	game->img_width = NULL;
-	game->map_height = NULL;
-	game->map_width = NULL;
+	game->img_height = 0;
+	game->img_width = 0;
+	game->map_height = 10;
+	game->map_width = 10;
 	game->mlx_win = NULL;
 	game->mlx = NULL;
-	game->player_xy = NULL;
-	game->move_count = NULL;
-	game->error_message = NULL;
+	// game->player_xy = NULL;
+	// game->move_count = NULL;
+	// game->error_message = NULL;
+	return ;
+}
+static int	game_img_check(t_game *game)
+{
+	int	check;
+
+	check = 1;
+	if (!(game->wall))
+		check = 0;
+	if (!(game->box))
+		check = 0;
+	if (!(game->floor))
+		check = 0;
+	if (!(game->hero))
+		check = 0;
+	if (!(game->door))
+		check = 0;
+	return (check);
+}
+void	init_img(t_game *game)
+{
+	int	*width;
+	int	*height;
+	void	*mlx;
+
+	width = &(game->img_width);
+	height = &(game->img_height);
+	mlx = game->mlx;
+	printf("width = %i height = %i\n", *width, *height);
+	game->wall = mlx_xpm_file_to_image(mlx, "./img/wall.xpm", width, height);
+	printf("width = %i height = %i\n", *width, *height);
+	game->box = mlx_xpm_file_to_image(mlx, "./img/box.xpm", width, height);
+	printf("width = %i height = %i\n", *width, *height);
+	game->floor = mlx_xpm_file_to_image(mlx, "./img/floor.xpm", width, height);
+	printf("width = %i height = %i\n", *width, *height);
+	game->hero = mlx_xpm_file_to_image(mlx, "./img/hero.xpm", width, height);
+	printf("width = %i height = %i\n", *width, *height);
+	game->door = mlx_xpm_file_to_image(mlx, "./img/door.xpm", width, height);
+
+	printf("width = %i height = %i\n", *width, *height);
+	if (game_img_check(game) == 0)
+	{
+		perror("Error\nfailed to load img");
+		exit_game(game);
+	}
+	
+}
+void init_p_xy(t_game *game)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (game->map[y])
+	{
+		x = 0;
+		while (game->map[y][x])
+		{
+			if (game->map[y][x] == 'P')
+			{
+				game->player_xy.x = x;
+				game->player_xy.y = y;
+			}
+			x++;
+		}
+		y++;
+	}
 	return ;
 }
 
-void	init_game(t_game *ptr_game, char **map)
+void	init_game(t_game *game, char *map)
 {
-	init_struc(ptr_game);
-	init_map(map, ptr_game);
+	
+	init_struct(game);
+	init_map(map, game);
+	init_p_xy(game);
+
+	game->mlx = mlx_init();
+	if (!game->mlx)
+	{
+		game->error_message = "Error\nfailed to connect to server";
+		exit_game(game);
+	}
+	init_img(game);
+	game->mlx_win = mlx_new_window(game->mlx, game->map_width * game->img_width,
+			game->map_height * game->img_height, "so_long");
 }
 
 int	main(int argc, char **argv)
@@ -54,5 +111,6 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		perror_exit("unvalid number of arguments");
+
 	init_game(&game, argv[1]);
 }

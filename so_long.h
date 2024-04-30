@@ -1,9 +1,12 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# include "mlx.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include <fcntl.h>
 # include <stdbool.h>
-# include <stdlib.h>
+# include "mlx_int.h"
 
 typedef struct s_xy
 {
@@ -14,10 +17,10 @@ typedef struct s_xy
 typedef struct s_game
 {
 	void	*wall;
-	void	*coin;
+	void	*box;
 	void	*floor;
 	void	*hero;
-	void	*exit;
+	void	*door;
 	char	**map;
 	char	**map_double;
 	int		img_height;
@@ -32,5 +35,9 @@ typedef struct s_game
 }	t_game;
 
 void	perror_exit(char *error_message);
+void	cleanup(t_game *game);
+int		exit_game(t_game *game);
+void 	init_map(char *map, t_game *game);
+void	extension_check(char *s);
 
 #endif
