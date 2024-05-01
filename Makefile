@@ -9,6 +9,7 @@ LIBFT				= ./libft/libft.a
 SRC =	so_long.c \
 		handle_error.c \
 		init_map.c \
+    generate_game.c \
     #   ft_check_input.c \
     #   ft_checks.c \
     #   ft_parse_map.c \

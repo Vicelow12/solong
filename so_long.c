@@ -8,10 +8,6 @@ void init_struct(t_game *game)
 	game->hero = NULL;
 	game->door = NULL;
 	game->map = NULL;
-	game->img_height = 0;
-	game->img_width = 0;
-	game->map_height = 10;
-	game->map_width = 10;
 	game->mlx_win = NULL;
 	game->mlx = NULL;
 	// game->player_xy = NULL;
@@ -19,7 +15,7 @@ void init_struct(t_game *game)
 	// game->error_message = NULL;
 	return ;
 }
-static int	game_img_check(t_game *game)
+int	game_img_check(t_game *game)
 {
 	int	check;
 
@@ -102,7 +98,12 @@ void	init_game(t_game *game, char *map)
 	}
 	init_img(game);
 	game->mlx_win = mlx_new_window(game->mlx, game->map_width * game->img_width,
-			game->map_height * game->img_height, "so_long");
+		game->map_height * game->img_height, "so_long");
+	if (!game->mlx_win)
+	{
+		game->error_message = "Error : window generation failed";
+		exit_game(game);
+	}
 }
 
 int	main(int argc, char **argv)
@@ -113,4 +114,6 @@ int	main(int argc, char **argv)
 		perror_exit("unvalid number of arguments");
 
 	init_game(&game, argv[1]);
+	generate_game(&game);
+	mlx_loop(game.mlx);
 }

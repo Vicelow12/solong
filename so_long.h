@@ -37,7 +37,18 @@ typedef struct s_game
 void	perror_exit(char *error_message);
 void	cleanup(t_game *game);
 int		exit_game(t_game *game);
-void 	init_map(char *map, t_game *game);
+void	init_map(char *map, t_game *game);
 void	extension_check(char *s);
+void	init_game(t_game *game, char *map);
+void 	init_p_xy(t_game *game);
+void	init_img(t_game *game);
+int		game_img_check(t_game *game);
+void	init_struct(t_game *game);
+void	create_map(char *mapline, t_game *game);
+void	free_map_exit(char *mapline, char *newline, char *err);
+void	free_map(char **map);
+
+
+
 
 #endif
