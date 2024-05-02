@@ -2,7 +2,7 @@ NAME = so_long
 
 RM = rm -f
 CC = cc
-CFLAGS = -g3 -MMD -MP
+CFLAGS = -Wall -Wextra -Werror -g3 -MMD -MP
 LIBFT				= ./libft/libft.a
 
 
@@ -10,6 +10,8 @@ SRC =	so_long.c \
 		handle_error.c \
 		init_map.c \
     generate_game.c \
+    map_check.c\
+    flood_fill.c\
     #   ft_check_input.c \
     #   ft_checks.c \
     #   ft_parse_map.c \

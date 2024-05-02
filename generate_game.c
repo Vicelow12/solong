@@ -6,7 +6,7 @@
 /*   By: ngaulthi <ngaulthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 18:54:40 by ngaulthi          #+#    #+#             */
-/*   Updated: 2024/05/01 20:21:28 by ngaulthi         ###   ########.fr       */
+/*   Updated: 2024/05/02 20:09:12 by ngaulthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	put_img(t_game *game, int x, int y)
 	else if (game->map[y][x] == 'P')
 		mlx_put_image_to_window(mlx, mlx_win, game->hero, img_x, img_y);
 }
-void    generate_game(t_game *game)
+void	generate_game(t_game *game)
 {
 	int	x;
 	int	y;

@@ -89,7 +89,11 @@ void	init_game(t_game *game, char *map)
 	init_struct(game);
 	init_map(map, game);
 	init_p_xy(game);
-
+	if(map_check(game) == 0)
+	{
+		game->error_message = "Error\ninvalid map";
+		exit_game(game);
+	}
 	game->mlx = mlx_init();
 	if (!game->mlx)
 	{
@@ -101,7 +105,7 @@ void	init_game(t_game *game, char *map)
 		game->map_height * game->img_height, "so_long");
 	if (!game->mlx_win)
 	{
-		game->error_message = "Error : window generation failed";
+		game->error_message = "Error\nwindow generation failed";
 		exit_game(game);
 	}
 }
@@ -111,9 +115,10 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc != 2)
-		perror_exit("unvalid number of arguments");
+		perror_exit("Error\nunvalid number of arguments");
 
 	init_game(&game, argv[1]);
 	generate_game(&game);
+	
 	mlx_loop(game.mlx);
 }

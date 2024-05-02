@@ -34,6 +34,16 @@ typedef struct s_game
 	char	*error_message;
 }	t_game;
 
+//////////LIBFT/////////
+char	**ft_split(char const *s, char c);
+char	*get_next_line(int fd);
+size_t	ft_strlen(const char *str);
+char	*ft_join_free_s1(char *s1, char const *s2);
+int		ft_printf(const char *text, ...);
+//////////LIBFT/////////
+
+
+
 void	perror_exit(char *error_message);
 void	cleanup(t_game *game);
 int		exit_game(t_game *game);
@@ -47,6 +57,9 @@ void	init_struct(t_game *game);
 void	create_map(char *mapline, t_game *game);
 void	free_map_exit(char *mapline, char *newline, char *err);
 void	free_map(char **map);
+int 	map_check(t_game *game);
+void	generate_game(t_game *game);
+int 	path_check(t_game *game);
 
 
 

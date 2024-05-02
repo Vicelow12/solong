@@ -6,7 +6,7 @@
 /*   By: ngaulthi <ngaulthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 18:54:58 by ngaulthi          #+#    #+#             */
-/*   Updated: 2024/05/01 18:54:59 by ngaulthi         ###   ########.fr       */
+/*   Updated: 2024/05/02 22:06:00 by ngaulthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ void	extension_check(char *s)
 
 void	create_map(char *mapline, t_game *game)
 {
-	// if (!map_array)
-	// 	perror_and_exit("Error\nfailed to get map");
+	if (!mapline)
+		perror_exit("Error\nfailed to get map");
 	game->map = ft_split(mapline, '\n');
-	// game->map_double = ft_split(map_array, '\n');
+	game->map_double = ft_split(mapline, '\n');
 	free(mapline);
-	if (!game->map /*|| !game->map_double*/)
+	if (!game->map || !game->map_double)
 	{
 		game->error_message = "Error\nsplit failed";
 		exit_game(game);
