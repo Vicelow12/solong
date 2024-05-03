@@ -12,20 +12,8 @@ SRC =	so_long.c \
     generate_game.c \
     map_check.c\
     flood_fill.c\
-    #   ft_check_input.c \
-    #   ft_checks.c \
-    #   ft_parse_map.c \
-    #   ft_init.c \
-    #   ft_init_win.c \
-    #   ft_movements.c \
-    #   ft_utils.c \
-    #   ft_utils2.c \
-    #   ft_utils3.c \
-    #   ft_end_game.c \
-
-    #   ft_printf.c \
-    #   ft_printf_put.c \
-    #   ft_printf_utils.c \
+    game_input.c\
+    init_game.c\
 
 OBJS = $(SRC:%.c=%.o)
 DEPS = $(OBJS:%.o=%.d)

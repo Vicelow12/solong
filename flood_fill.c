@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngaulthi <ngaulthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 21:24:09 by ngaulthi          #+#    #+#             */
-/*   Updated: 2024/05/02 22:08:03 by ngaulthi         ###   ########.fr       */
+/*   Created: 2024/05/02 21:24:09 by ngaulthi1 1       #+#    #+#             */
+/*   Updated: 2024/05/03 22:18:26 by ngaulthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@ void	floodfill(char **map, t_xy begin)
 	floodfill(map, (t_xy){x, y - 1});
 	floodfill(map, (t_xy){x, y + 1});
 }
+
 int	check_floodfill(char **map)
 {
 	int	x;
-	int y;
-	int check;
-	
+	int	y;
+	int	check;
+
 	y = -1;
 	check = 0;
 	while (map[++y])
@@ -48,7 +49,7 @@ int	check_floodfill(char **map)
 				if (map[y - 1][x] == 'F' || map[y + 1][x] == 'F'
 					|| map[y][x + 1] == 'F' || map[y][x - 1] == 'F')
 					check = 1;
-			}	
+			}
 		}
 	}
 	return (check);

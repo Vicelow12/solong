@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngaulthi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ngaulthi <ngaulthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:30:32 by ngaulthi          #+#    #+#             */
-/*   Updated: 2023/11/22 17:07:29 by ngaulthi         ###   ########.fr       */
+/*   Updated: 2024/05/03 22:13:22 by ngaulthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+
+#include "libft.h"
 
 int	ft_atoi(const char *nptr)
 {
-	size_t			i;
+	size_t		i;
 	int			sign;
 	long int	result;
 	long int	overunder_check;

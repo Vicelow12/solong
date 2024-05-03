@@ -6,7 +6,7 @@
 /*   By: ngaulthi <ngaulthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 18:54:52 by ngaulthi          #+#    #+#             */
-/*   Updated: 2024/05/01 18:54:53 by ngaulthi         ###   ########.fr       */
+/*   Updated: 2024/05/03 22:29:16 by ngaulthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	free_map(char **map)
 	int	i;
 
 	i = 0;
-
 	while (map[i])
 	{
 		if (map[i])
@@ -27,11 +26,13 @@ void	free_map(char **map)
 	free(map);
 	return ;
 }
+
 void	perror_exit(char *error_message)
 {
 	perror(error_message);
 	exit(EXIT_FAILURE);
 }
+
 int	exit_game(t_game *game)
 {
 	cleanup(game);
@@ -39,6 +40,7 @@ int	exit_game(t_game *game)
 		perror_exit(game->error_message);
 	exit(EXIT_SUCCESS);
 }
+
 void	cleanup(t_game *game)
 {
 	if (game->box)
@@ -57,6 +59,7 @@ void	cleanup(t_game *game)
 		mlx_destroy_display(game->mlx);
 	if (game->map)
 		free_map(game->map);
-	// ft_free_array((void **)game->map_double);
+	if (game->map_double)
+		free_map(game->map_double);
 	free(game->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: ngaulthi <ngaulthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 18:54:58 by ngaulthi          #+#    #+#             */
-/*   Updated: 2024/05/02 22:06:00 by ngaulthi         ###   ########.fr       */
+/*   Updated: 2024/05/03 22:46:07 by ngaulthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,18 @@ void	create_map(char *mapline, t_game *game)
 		exit_game(game);
 	}
 }
+
+char	*empty_malloc(void)
+{
+	char	*empty_malloc;
+
+	empty_malloc = malloc(sizeof(char));
+	if (!empty_malloc)
+		perror_exit("Error\nempty malloc failed");
+	empty_malloc[0] = '\0';
+	return (empty_malloc);
+}
+
 void	init_map(char *map, t_game *game)
 {
 	int		map_fd;
@@ -55,10 +67,7 @@ void	init_map(char *map, t_game *game)
 	map_fd = open(map, O_RDONLY);
 	if (map_fd == -1)
 		perror_exit("Error\nfailed to open map fd");
-	mapline = malloc(sizeof(char));
-	if (!mapline)
-		perror_exit("Error\nempty malloc failed");
-	mapline[0] = '\0';
+	mapline = empty_malloc();
 	newline = get_next_line(map_fd);
 	if (newline)
 		game->map_width = ft_strlen(newline) - 1;
@@ -66,15 +75,13 @@ void	init_map(char *map, t_game *game)
 	while (newline)
 	{
 		mapline = ft_join_free_s1(mapline, newline);
-		if(!mapline)
+		if (!mapline)
 			free_map_exit(mapline, newline, "Error\nft_join_free_s1");
 		free(newline);
 		newline = get_next_line(map_fd);
 		game->map_height += 1;
-		printf("mapheight : %zu", game->map_height );
 	}
 	if (close(map_fd) == -1)
 		free_map_exit(mapline, newline, "Error\nclose mapfd");
 	create_map(mapline, game);
-} 
-
+}

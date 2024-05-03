@@ -6,21 +6,22 @@
 /*   By: ngaulthi <ngaulthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 19:00:42 by ngaulthi          #+#    #+#             */
-/*   Updated: 2024/05/02 21:06:05 by ngaulthi         ###   ########.fr       */
+/*   Updated: 2024/05/03 22:20:00 by ngaulthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
 int	is_rectangle(char **map)
 {
 	size_t	width;
-	int j;
+	int		j;
 
 	j = 0;
 	width = ft_strlen(map[j]);
 	while (map[j])
 	{
-		if(ft_strlen(map[j]) != width)
+		if (ft_strlen(map[j]) != width)
 			return (0);
 		j++;
 	}
@@ -51,9 +52,10 @@ int	is_closed(char **map)
 			return (0);
 	return (1);
 }
+
 int	item_count(char **map)
 {
-	int yx_item[5];
+	int	yx_item[5];
 
 	yx_item[0] = -1;
 	yx_item[2] = 0;
@@ -79,6 +81,7 @@ int	item_count(char **map)
 		return (0);
 	return (1);
 }
+
 int	map_check(t_game *game)
 {
 	if (!(game->map) || !(game->map[0]))
@@ -91,5 +94,5 @@ int	map_check(t_game *game)
 		return (0);
 	if (!path_check(game))
 		return (0);
-	return(1);
+	return (1);
 }

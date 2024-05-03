@@ -6,7 +6,7 @@
 /*   By: ngaulthi <ngaulthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 18:54:40 by ngaulthi          #+#    #+#             */
-/*   Updated: 2024/05/02 20:09:12 by ngaulthi         ###   ########.fr       */
+/*   Updated: 2024/05/03 22:21:34 by ngaulthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	put_img(t_game *game, int x, int y)
 	img_y = game->img_height * y;
 	mlx = game->mlx;
 	mlx_win = game->mlx_win;
-	
 	if (game->map[y][x] == '1')
 		mlx_put_image_to_window(mlx, mlx_win, game->wall, img_x, img_y);
 	else if (game->map[y][x] == '0')
@@ -35,22 +34,22 @@ void	put_img(t_game *game, int x, int y)
 	else if (game->map[y][x] == 'P')
 		mlx_put_image_to_window(mlx, mlx_win, game->hero, img_x, img_y);
 }
+
 void	generate_game(t_game *game)
 {
 	int	x;
 	int	y;
 
 	y = 0;
-
 	while (game->map[y])
 	{
 		x = 0;
-		while(game->map[y][x])
+		while (game->map[y][x])
 		{
-			put_img(game, x ,y);
+			put_img(game, x, y);
 			x++;
 		}
 		y++;
 	}
-	return;
+	return ;
 }

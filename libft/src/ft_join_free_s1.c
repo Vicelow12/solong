@@ -6,7 +6,7 @@
 /*   By: ngaulthi <ngaulthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 18:24:43 by ngaulthi          #+#    #+#             */
-/*   Updated: 2024/04/30 18:56:03 by ngaulthi         ###   ########.fr       */
+/*   Updated: 2024/05/03 22:12:34 by ngaulthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_join_free_s1(char *s1, char const *s2)
 		i++;
 		j++;
 	}
-	join[i] = '\0';	
+	join[i] = '\0';
 	free(s1);
 	return (join);
 }
